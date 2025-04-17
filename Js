@@ -1,0 +1,18 @@
+const mineflayer = require('mineflayer');
+
+const bot = mineflayer.createBot({
+  host: 'gangstasmp-1.aternos.me', // your server IP
+  port: 11232, // your server port
+  username: 'plazy' // bot's username
+});
+
+bot.once('spawn', () => {
+  console.log('Plazy is online and AFK!');
+  setInterval(() => {
+    const pos = bot.entity.position;
+    bot.chat(`I'm still here at ${pos.x.toFixed(1)}, ${pos.y.toFixed(1)}, ${pos.z.toFixed(1)}`);
+  }, 10000);
+});
+
+bot.on('error', err => console.log('Error:', err));
+bot.on('end', () => console.log('Bot disconnected.'));
